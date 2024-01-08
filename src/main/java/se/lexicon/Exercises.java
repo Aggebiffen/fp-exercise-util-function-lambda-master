@@ -4,6 +4,7 @@ import se.lexicon.data.DataStorage;
 import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
+import java.util.Comparator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -135,8 +136,7 @@ public class Exercises {
      */
     public static void exercise11(String message) {
         System.out.println(message);
-        //Write your code here
-
+        Predicate<Person> StartsWithA = person -> person.getFirstName().startsWith("A");
         System.out.println("----------------------");
     }
 
