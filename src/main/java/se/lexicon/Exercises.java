@@ -137,6 +137,9 @@ public class Exercises {
     public static void exercise11(String message) {
         System.out.println(message);
         Predicate<Person> StartsWithA = person -> person.getFirstName().startsWith("A");
+        Comparator<Person> sortByBirthDate = Comparator.comparing(Person::getBirthDate);
+        storage.findAndSort(StartsWithA, sortByBirthDate)
+                .forEach(System.out::println);
         System.out.println("----------------------");
     }
 
@@ -145,7 +148,11 @@ public class Exercises {
      */
     public static void exercise12(String message) {
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> bornBefore1950 = person ->
+                person.getBirthDate().isBefore(LocalDate.parse("1950-01-01"));
+        Comparator<Person> sortByBirthDateReversed = Comparator.comparing(Person::getBirthDate).reversed();
+        storage.findAndSort(bornBefore1950, sortByBirthDateReversed)
+                .forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -155,8 +162,12 @@ public class Exercises {
      */
     public static void exercise13(String message) {
         System.out.println(message);
-        //Write your code here
-
+        Comparator<Person> sort =
+                Comparator.comparing(Person::getLastName)
+                        .thenComparing(Person::getFirstName)
+                        .thenComparing(Person::getBirthDate);
+        storage.findAndSort(sort)
+                .forEach(System.out::println);
         System.out.println("----------------------");
     }
 }
